@@ -431,9 +431,35 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
-#streamlit
+# #streamlit
+# import os
+# import subprocess
+
+# # 1. Cloud Database Guardrail: Initialize DB if missing
+# if not os.path.exists("data/freelance.db"):
+#     print("Cloud database missing. Initializing system ledger...")
+#     subprocess.run(["python", "init_db.py"])
+
+# # 2. Cloud Model Guardrail: Train ML Model if binary is missing
+# if not os.path.exists("models/model.pkl"):
+#     print("Cloud ML model binary missing. Training Random Forest ensemble...")
+#     # Adjust this path if your script is inside src/
+#     if os.path.exists("src/train_model.py"):
+#         subprocess.run(["python", "src/train_model.py"])
+#     elif os.path.exists("train_model.py"):
+#         subprocess.run(["python", "train_model.py"])
+#streamlit code 2
 import os
 import subprocess
+
+# 🛑 SAFETY GUARDRAIL: Create folders if they don't exist in the cloud
+if not os.path.exists("data"):
+    os.makedirs("data")
+    print("Created missing 'data' folder.")
+
+if not os.path.exists("models"):
+    os.makedirs("models")
+    print("Created missing 'models' folder.")
 
 # 1. Cloud Database Guardrail: Initialize DB if missing
 if not os.path.exists("data/freelance.db"):
@@ -443,7 +469,6 @@ if not os.path.exists("data/freelance.db"):
 # 2. Cloud Model Guardrail: Train ML Model if binary is missing
 if not os.path.exists("models/model.pkl"):
     print("Cloud ML model binary missing. Training Random Forest ensemble...")
-    # Adjust this path if your script is inside src/
     if os.path.exists("src/train_model.py"):
         subprocess.run(["python", "src/train_model.py"])
     elif os.path.exists("train_model.py"):
