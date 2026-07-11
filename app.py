@@ -411,6 +411,11 @@
 
 #version3
 
+
+#streamlit code for website live
+
+
+
 """
 app.py (Upgraded Frontend Edition)
 Brings real-time feature engineering data breakdowns and analytical insights
@@ -425,6 +430,24 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+
+#streamlit
+import os
+import subprocess
+
+# 1. Cloud Database Guardrail: Initialize DB if missing
+if not os.path.exists("data/freelance.db"):
+    print("Cloud database missing. Initializing system ledger...")
+    subprocess.run(["python", "init_db.py"])
+
+# 2. Cloud Model Guardrail: Train ML Model if binary is missing
+if not os.path.exists("models/model.pkl"):
+    print("Cloud ML model binary missing. Training Random Forest ensemble...")
+    # Adjust this path if your script is inside src/
+    if os.path.exists("src/train_model.py"):
+        subprocess.run(["python", "src/train_model.py"])
+    elif os.path.exists("train_model.py"):
+        subprocess.run(["python", "train_model.py"])
 
 # --- Page Configuration ---
 st.set_page_config(page_title="Freelance Risk Engine", layout="centered", page_icon="🔍")
