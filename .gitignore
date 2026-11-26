@@ -4,11 +4,11 @@ __pycache__/
 *.pyc
 
 # Ignore Local App Data and Databases
-data/freelance.db
-data/raw_contracts.csv
+#data/freelance.db
+#data/raw_contracts.csv
 
 # Ignore Local Machine Learning Model Binaries
-models/model.pkl
+#models/model.pkl
 
 # Ignore OS specific temporary files
 .DS_Store
